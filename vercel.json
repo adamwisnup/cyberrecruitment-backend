@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/participant/(.*)",
+      "src": "/api/(.*)",
       "dest": "/src/index.js"
     },
     {
