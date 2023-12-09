@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Faculty {
+  FTE
+  FRI
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum EntryYear {
+  YEAR_2021
+  YEAR_2022
+  YEAR_2023
+}
+
+model Participant {
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  nim          String     @unique
+  class        String
+  email        String     @unique
+  faculty      Faculty    
+  gender       Gender
+  phone_number String
+  entry_year   EntryYear
+  document     String     @unique
+}
