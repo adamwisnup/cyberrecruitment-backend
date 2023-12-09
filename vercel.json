@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/api/participant(.*)",
+      "dest": "/src/index.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/src/index.js"
     }
   ]
 }
