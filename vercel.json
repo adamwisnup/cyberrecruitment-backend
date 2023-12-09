@@ -9,15 +9,15 @@
   "routes": [
     {
       "src": "/api/participant/(.*)",
-      "dest": "/api/participant"
+      "dest": "./src/index.js"
     },
     {
       "src": "/api/(.*)",
-      "dest": "/api"
+      "dest": "./src/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/src/index.js"
+      "dest": "./src/index.js"
     }
   ]
 }
