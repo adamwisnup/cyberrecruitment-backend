@@ -5,6 +5,7 @@ const {
   findParticipantById,
   editParticipant,
   deleteProduct: deleteParticipantRepository,
+  findParticipantByNIM,
 } = require("./participant.repository");
 
 const getAllParticipant = async () => {
@@ -15,6 +16,12 @@ const getAllParticipant = async () => {
 
 const getParticipantById = async (id) => {
   const participant = await findParticipantById(id);
+
+  return participant;
+};
+
+const getParticipantByNIM = async (nim) => {
+  const participant = await findParticipantByNIM(nim);
 
   return participant;
 };
@@ -41,6 +48,7 @@ const deleteParticipant = async (id) => {
 module.exports = {
   getAllParticipant,
   getParticipantById,
+  getParticipantByNIM,
   createParticipant,
   updateParticipant,
   deleteParticipant,

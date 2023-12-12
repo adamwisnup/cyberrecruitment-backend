@@ -1,6 +1,7 @@
 const {
   getAllParticipant,
   getParticipantById,
+  getParticipantByNIM,
   updateParticipant,
   deleteParticipant,
   createParticipant,
@@ -72,6 +73,31 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Some fields are missing" });
     }
 
+    const existingParticipant = await getParticipantByNIM(nim);
+    if (existingParticipant) {
+      return res
+        .status(400)
+        .json({ message: "Participant with this NIM already exists" });
+    }
+
+    const validFaculties = ["FTE", "FRI"];
+    const validGenders = ["MALE", "FEMALE"];
+    const validEntryYears = ["YEAR_2021", "YEAR_2022", "YEAR_2023"];
+
+    if (
+      typeof name !== "string" ||
+      typeof nim !== "string" ||
+      typeof participantClass !== "string" ||
+      typeof email !== "string" ||
+      !validFaculties.includes(faculty) ||
+      !validGenders.includes(gender) ||
+      typeof phone_number !== "string" ||
+      !validEntryYears.includes(entry_year) ||
+      typeof document !== "string"
+    ) {
+      return res.status(400).json({ message: "Invalid data types or values" });
+    }
+
     const newParticipant = await createParticipant({
       name,
       nim,
@@ -85,7 +111,7 @@ router.post("/", async (req, res) => {
     });
 
     res.status(201).json({
-      message: "register participant success",
+      message: "Register participant success",
       data: newParticipant,
     });
   } catch (error) {

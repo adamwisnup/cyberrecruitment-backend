@@ -34,6 +34,16 @@ const findParticipantById = async (id) => {
   return participant;
 };
 
+const findParticipantByNIM = async (nim) => {
+  const participant = await prisma.participant.findUnique({
+    where: {
+      nim: nim,
+    },
+  });
+
+  return participant;
+};
+
 const editParticipant = async (id, participantData) => {
   const participant = await prisma.participant.update({
     where: {
@@ -67,6 +77,7 @@ module.exports = {
   insertParticipant,
   findParticipants,
   findParticipantById,
+  findParticipantByNIM,
   editParticipant,
   deleteParticipant,
 };
