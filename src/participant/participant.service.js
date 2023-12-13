@@ -5,7 +5,7 @@ const {
   findParticipantById,
   editParticipant,
   deleteProduct: deleteParticipantRepository,
-  findParticipantByNIM,
+  findParticipantAlreadyExist,
 } = require("./participant.repository");
 
 const getAllParticipant = async () => {
@@ -20,8 +20,8 @@ const getParticipantById = async (id) => {
   return participant;
 };
 
-const getParticipantByNIM = async (nim) => {
-  const participant = await findParticipantByNIM(nim);
+const getParticipantAlreadyExist = async (nim) => {
+  const participant = await findParticipantAlreadyExist(nim);
 
   return participant;
 };
@@ -48,7 +48,7 @@ const deleteParticipant = async (id) => {
 module.exports = {
   getAllParticipant,
   getParticipantById,
-  getParticipantByNIM,
+  getParticipantAlreadyExist,
   createParticipant,
   updateParticipant,
   deleteParticipant,

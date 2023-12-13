@@ -1,7 +1,7 @@
 const {
   getAllParticipant,
   getParticipantById,
-  getParticipantByNIM,
+  getParticipantAlreadyExist,
   updateParticipant,
   deleteParticipant,
   createParticipant,
@@ -73,11 +73,19 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ message: "Some fields are missing" });
     }
 
-    const existingParticipant = await getParticipantByNIM(nim);
+    const existingParticipant = await getParticipantAlreadyExist(
+      name,
+      nim,
+      participantClass,
+      email,
+      faculty,
+      gender,
+      phone_number,
+      entry_year,
+      document
+    );
     if (existingParticipant) {
-      return res
-        .status(400)
-        .json({ message: "Participant with this NIM already exists" });
+      return res.status(400).json({ message: "Participant already exists" });
     }
 
     const validFaculties = ["FTE", "FRI"];

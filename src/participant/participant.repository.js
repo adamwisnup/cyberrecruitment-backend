@@ -34,10 +34,28 @@ const findParticipantById = async (id) => {
   return participant;
 };
 
-const findParticipantByNIM = async (nim) => {
+const findParticipantAlreadyExist = async (
+  name,
+  nim,
+  email,
+  participantClass,
+  faculty,
+  entry_year,
+  phone_number,
+  gender,
+  document
+) => {
   const participant = await prisma.participant.findUnique({
     where: {
-      nim: nim,
+      name,
+      nim,
+      email,
+      class: participantClass, // Change 'class' to 'participantClass'
+      faculty,
+      entry_year,
+      phone_number,
+      gender,
+      document,
     },
   });
 
@@ -77,7 +95,7 @@ module.exports = {
   insertParticipant,
   findParticipants,
   findParticipantById,
-  findParticipantByNIM,
+  findParticipantAlreadyExist,
   editParticipant,
   deleteParticipant,
 };
