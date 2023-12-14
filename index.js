@@ -12,7 +12,7 @@ app.use(express.json());
 
 const participantController = require("./src/participant/participant.controller");
 
-app.use("/api", participantController);
+app.use("/participant", participantController);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
