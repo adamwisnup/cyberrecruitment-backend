@@ -4,7 +4,7 @@ const {
   insertParticipant,
   findParticipantById,
   editParticipant,
-  deleteProduct: deleteParticipantRepository,
+  deleteParticipant: deleteParticipantRepository,
   findParticipantAlreadyExist,
 } = require("./participant.repository");
 
